@@ -1,8 +1,11 @@
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 import cliente.Cliente;
 import pedido.GerarPedido;
 import pedido.GerarPedidoHandler;
+import pedido.acao.EnviarEmailPedido;
+import pedido.acao.SalvarPedidoNoBancoDados;
 
 public class TestePedidos {
 	
@@ -11,7 +14,11 @@ public class TestePedidos {
 		Cliente cliente = new Cliente("joao", "129");
 		
 		GerarPedido geradorPedidos = new GerarPedido(cliente, BigDecimal.TEN, 10);
-		GerarPedidoHandler handler = new GerarPedidoHandler(/*dependencias*/);
+		GerarPedidoHandler handler = new GerarPedidoHandler(
+				Arrays.asList(
+						new SalvarPedidoNoBancoDados(), 
+						new EnviarEmailPedido()
+				));
 		handler.execute(geradorPedidos);
 	}
 	
