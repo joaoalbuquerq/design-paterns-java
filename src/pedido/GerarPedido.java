@@ -1,10 +1,8 @@
 package pedido;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import cliente.Cliente;
-import orcamento.Orcamento;
 
 public class GerarPedido {
 
@@ -18,13 +16,17 @@ public class GerarPedido {
 		this.valorOrcamento = valorOrcamento;
 		this.qtdItens = qtdItens;
 	}
-	
-	public void executar() {
-		Orcamento orcamento = new Orcamento(this.valorOrcamento, this.qtdItens);
-		Pedido pedido = new Pedido(cliente,LocalDateTime.now(),orcamento);
-		
-		System.out.println("SALVAR PEDIDO NO BANCO");
-		System.out.println("ENVIAR EMAIL COM DADOS DO NOVO PEDIDO");
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public BigDecimal getValorOrcamento() {
+		return valorOrcamento;
+	}
+
+	public int getQtdItens() {
+		return qtdItens;
 	}
 	
 	
